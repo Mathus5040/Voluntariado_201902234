@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        #list {
+            margin-top: 20px;
+            width: 300px;
+            list-style: none;
+            padding: 0;
+        }
+
+        #list li {
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        #inputField {
+            padding: 10px;
+            font-size: 1rem;
+            width: 250px;
+            margin-bottom: 10px;
+        }
+
+        #addButton {
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        #addButton:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Dynamic List</h2>
+
+    <!-- Input field and button to add new items -->
+    <input type="text" id="inputField" placeholder="Enter item here">
+    <button id="addButton">Add to List</button>
+
+    <!-- Unordered list where new items will be added -->
+    <ul id="list"></ul>
+
+    <script>
+        // Get references to the input field, button, and list
+        const inputField = document.getElementById('inputField');
+        const addButton = document.getElementById('addButton');
+        const list = document.getElementById('list');
+
+        // Function to add a new item to the list
+        function addItem() {
+            const inputValue = inputField.value.trim();  // Get the value and remove extra spaces
+
+            if (inputValue === '') {
+                alert('Please enter a valid item!');
+                return;
+            }
+
+            // Create a new <li> element
+            const listItem = document.createElement('li');
+            listItem.textContent = inputValue;
+
+            // Append the new item to the list
+            list.appendChild(listItem);
+
+            // Clear the input field after adding the item
+            inputField.value = '';
+        }
+
+        // Add click event listener to the button
+        addButton.addEventListener('click', addItem);
+
+        // Optional: Allow pressing "Enter" to add the item
+        inputField.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                addItem();
+            }
+        });
+    </script>
+
+</body>
+</html>
